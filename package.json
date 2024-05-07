@@ -12,6 +12,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
-  }
+    "express": "^4.19.2",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k1s3n/Extra-exercise.git"
+  },
+  "bugs": {
+    "url": "https://github.com/k1s3n/Extra-exercise/issues"
+  },
+  "homepage": "https://github.com/k1s3n/Extra-exercise#readme"
 }
