@@ -24,9 +24,18 @@ app.get('/allpersons', (req, res) => {
   });
 });
 
-app.post('/', (req, res) => {
+app.post('/personas/:id', (req, res) => {
   console.log('POST-data:', req.body);
-  res.send('POST-request mottagen');
+  const query = 'SELECT * FROM persons WHERE id = ?';
+  db.get(query, [req.params.id], (err, row) => {
+    if(err){
+      return res.status(500).json({ message: err.message});
+    }
+    if (!row){
+      return res.status(404).json({ message: "person not found"});
+    }
+    res.json(row);
+  });
 });
 
 
