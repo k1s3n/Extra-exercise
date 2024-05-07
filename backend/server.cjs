@@ -20,5 +20,5 @@ app.post('/', (req, res) => {
 
 
 app.listen(3001, () => {
-  console.log('Server körs på port 3001');
+  console.log('Server http://localhost:3001');
 });
