@@ -1,7 +1,5 @@
 import express from "express";
 
-const dirname = url.fileURLToPath(new URL('.', import.meta.url));
-
 const app = express();
 
 const port = 3000;
