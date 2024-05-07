@@ -9,9 +9,20 @@ const app = express();
 
 app.use(bodyParser.json());
 
+const sqlite3 = require('sqlite3').verbose();
+let db = new sqlite3.Database('../database/hobbyhub.db');
 
 app.get('/', (req, res) => {
+  db.all('SELECT * FROM person', [], (err, rows) => {
+    if (err) {
+      console.error(err.message);
+    }
+    rows.forEach((row) => {
+      console.log(row.name);
+    });
+  });
   res.send('GET-request mottagen');
+
 });
 
 app.get('/allpersons', (req, res) => {
@@ -26,16 +37,12 @@ app.get('/allpersons', (req, res) => {
 
 app.post('/personas/:id', (req, res) => {
   console.log('POST-data:', req.body);
-  const query = 'SELECT * FROM persons WHERE id = ?';
-  db.get(query, [req.params.id], (err, row) => {
-    if(err){
-      return res.status(500).json({ message: err.message});
+  db.run('INSERT INTO person (name, info) VALUES (?, ?)', [req.body.name, req.body.info], function(err) {
+    if (err) {
+      console.error(err.message);
     }
-    if (!row){
-      return res.status(404).json({ message: "person not found"});
-    }
-    res.json(row);
   });
+  res.send('POST-request mottagen');
 });
 
 
