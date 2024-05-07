@@ -1,0 +1,23 @@
+body {
+    margin: 0 auto;
+    padding: 0;
+    background-color: #fd0000;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+}
+
+header main{
+    margin: 0 auto;
+}
+
+.container {
+    width: 20%;
+    margin: 10px auto;   
+    padding: 20px;
+    border-radius: 50px;
+    border-style: 1px solid;
+    background-color: white;
+    text-align: center;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0,0.541);
+}
