@@ -7,7 +7,7 @@ function fetchUserInterest() {
             }
             return response.json();
         })
-}
+
     .then(data => {
         const informationList = document.getElementById("Information");
             informationList.innerHTML = "";
@@ -20,3 +20,4 @@ function fetchUserInterest() {
     .catch(error => {
         console.error(error);
     })
+}
