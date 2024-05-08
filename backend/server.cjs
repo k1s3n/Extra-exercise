@@ -1,11 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-//const sqlite3 = require('sqlite3').verbose();
 
 
 const app = express();
-
-//const db = new sqlite3.Database('./database.db')
 
 app.use(bodyParser.json());
 
@@ -25,8 +22,21 @@ app.get('/', (req, res) => {
 
 });
 
+app.get('/persons/:name', (req, res) => {
+  const query = 'SELECT * FROM person WHERE LOWER(name) = LOWER(?)';
+  db.get(query, [req.params.name], (err, row) => {
+    if (err) {
+      return res.status(500).json({ message: err.message });
+    }
+    if (!row) {
+      return res.status(404).json({ message: 'Person not found' });
+    }
+    res.json(row);
+  });
+});
+
 app.get('/allpersons', (req, res) => {
-  const query = 'SELECT * FROM x';
+  const query = 'SELECT * FROM person';
   db.all(query, [], (err, rows) => {
     if(err) {
       return res.status(500).json({ message: err.message});
@@ -35,7 +45,7 @@ app.get('/allpersons', (req, res) => {
   });
 });
 
-app.post('/personas/:id', (req, res) => {
+app.post('/personas', (req, res) => {
   console.log('POST-data:', req.body);
   db.run('INSERT INTO person (name, info) VALUES (?, ?)', [req.body.name, req.body.info], function(err) {
     if (err) {
