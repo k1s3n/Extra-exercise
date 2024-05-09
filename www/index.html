@@ -12,10 +12,12 @@
       <div class="container">
         <h2>Lägg till information</h2>
         <form id="userForm">
-          <label for="name">Namn:</label>
-          <input type="text" id="name" name="name" /><br /><br />
-          <label for="info">Information:</label>
-          <textarea id="info" name="info"></textarea><br /><br />
+          <input type="text" placeholder="Namn" id="name" name="name" required />
+          <br>
+          <br>
+          <textarea id="info" placeholder="Information"name="info" style="width: 90%; height: 100px;" required></textarea>
+          <br>
+          <br>
           <button type="submit">Skicka</button>
           <button type="button" id="showInfo">Visa information</button>
           </button>
@@ -24,9 +26,16 @@
         </form>
       </div>
       <div class="container">
-        <h3>Personlista</h3>
-        <div id="personList"></div>
-      </div>
+        <table>
+          <thead>
+              <tr>
+                  <th>Namn</th>
+                  <th>Information</th>
+              </tr>
+          </thead>
+          <tbody id="personTable"></tbody>
+      </table>
+    </div>
     </main>
     <script src="post.js" type="module"></script>
 </body>

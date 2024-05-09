@@ -2,24 +2,28 @@ function showPersons() {
     fetch('http://localhost:3001/allpersons')
     .then(response => response.json())
     .then(data => {
-        const personListDiv = document.getElementById("personList");
-        // Rensa tidigare innehåll
-        personListDiv.innerHTML = "";
-        // Skapa och fyll listelement
-        const ul = document.createElement("ul");
-        data.forEach(person => {
-            const li = document.createElement("li");
-            li.textContent = `Namn: ${person.name}, Information: ${person.info}`;
-            ul.appendChild(li);
+        const personTable = document.getElementById("personTable");
+                
+                // Rensa tidigare innehåll
+                personTable.innerHTML = "";
+
+                data.reverse().forEach(person => {
+                    const row = document.createElement("tr");
+                    const nameCell = document.createElement("td");
+                    nameCell.textContent = person.name;
+                    const infoCell = document.createElement("td");
+                    infoCell.textContent = person.info;
+                    
+                    row.appendChild(nameCell);
+                    row.appendChild(infoCell);
+                    
+                    personTable.appendChild(row);
         });
-        personListDiv.appendChild(ul);
     })
     .catch(error => {
         console.error('Error:', error);
     });
 }
-
-
 
 
 document.getElementById("userForm").addEventListener("submit", function(event) {
