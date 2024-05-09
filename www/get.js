@@ -1,6 +1,6 @@
 function fetchUserInterest() {
     const namn = document.getElementById("Namn").value;
-    fetch(`http://localhost:3001/interests?name=${namn}`)
+    fetch(`http://localhost:3001/persons/?name=${namn}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
